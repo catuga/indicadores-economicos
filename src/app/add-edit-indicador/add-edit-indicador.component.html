@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{ data.mode === 'add' ? 'Agregar' : 'Editar' }} indicador</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-label>Indicadores</mat-label>
+    <mat-select [(ngModel)]="data.indicador" [disabled]="data.mode === 'edit'">
+      <mat-option *ngFor="let indicador of indicadoresList" [value]="indicador">{{indicador}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Selecciona una fecha</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="data.date">
+    <mat-hint>DD/MM/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="onNoClick()">Cancelar</button>
+  <button mat-button mat-dialog-close cdkFocusInitial [mat-dialog-close]="data">{{ data.mode === 'add' ? 'Agregar' :
+    'Editar' }}</button>
+</div>
